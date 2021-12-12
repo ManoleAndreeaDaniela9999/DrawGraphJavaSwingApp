@@ -3,6 +3,7 @@ package com.graf_app.graforientat;
 import com.graf_app.GrafWindowListener;
 import com.graf_app.GrafCanvas;
 import com.graf_app.Node;
+import com.graf_app.grafneorientat.GrafNeorientatCanvas;
 
 import javax.swing.*;
 import java.awt.*;
@@ -28,8 +29,7 @@ public class Graf extends JFrame {
         if (isOriented) {
             canvas = new GrafOrientatCanvas();
         } else {
-            //canvas = new GrafNeorientatCanvas();
-            canvas = new GrafOrientatCanvas();
+            canvas = new GrafNeorientatCanvas();
         }
         this.add(canvas, BorderLayout.CENTER);
         this.addWindowListener(new GrafWindowListener());
