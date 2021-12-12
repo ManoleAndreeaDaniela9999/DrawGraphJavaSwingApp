@@ -19,7 +19,7 @@ public class Node {
     }
 
     public Point getPosition(){
-        return position;
+        return new Point( position.x, position.y);
     }
 
     public void setPosition(Point position) {

@@ -50,8 +50,8 @@ public class GrafNeorientatCanvas extends GrafCanvas {
 
         for(Arc aux : arcList )
         {
-            if(aux.getStartNode().getPosition() == arc.getStartNode().getPosition() &&
-                    aux.getEndNode().getPosition() == arc.getEndNode().getPosition() && aux != arc )
+            if(aux.getStartNode().getPosition().equals( arc.getStartNode().getPosition()) &&
+                    aux.getEndNode().getPosition().equals(arc.getEndNode().getPosition()) && aux != arc )
             {
                 System.out.println("Arc from" + arc.getStartNode() + "to" + arc.getEndNode() + "already exits !");
                 return;

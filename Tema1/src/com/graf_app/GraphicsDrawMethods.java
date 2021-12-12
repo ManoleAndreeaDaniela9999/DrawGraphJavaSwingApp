@@ -36,6 +36,7 @@ public class GraphicsDrawMethods {
          return true;
     }
     public static void DrawSimpleArc(Point startPos, Point endPos , Graphics g) {
-
+        g.setColor(Color.black);
+        g.drawLine(startPos.x, startPos.y, endPos.x, endPos.y);
     }
 }

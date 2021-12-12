@@ -1,6 +1,7 @@
 package com.graf_app.grafneorientat;
 
 import com.graf_app.Arc;
+import com.graf_app.GraphicsDrawMethods;
 import com.graf_app.MainMenu;
 import com.graf_app.Node;
 
@@ -10,8 +11,6 @@ import java.awt.event.MouseEvent;
 import java.util.Vector;
 
 public class GrafNeorientatMouseAdapter extends MouseAdapter {
-    private Point m_startPosition;
-    private Point m_endPosition;
     private Point m_lastNodePosition;
 
     private boolean m_nodeWasFoundAtePoint;
@@ -21,8 +20,6 @@ public class GrafNeorientatMouseAdapter extends MouseAdapter {
     private boolean m_drawArc;
 
     public GrafNeorientatMouseAdapter() {
-        m_startPosition = new Point();
-        m_endPosition = new Point();
         m_lastNodePosition = new Point();
         m_nodeDragged = null;
         m_nodeWasFoundAtePoint = false;
@@ -43,7 +40,7 @@ public class GrafNeorientatMouseAdapter extends MouseAdapter {
             }
 
             Node node = new Node(e.getPoint(), 30, Node.orderNumber);
-            System.out.println(" You created node " + node.getNumber() + " at position " + m_startPosition);
+            System.out.println(" You created node " + node.getNumber() + " at position " + e.getPoint());
             MainMenu.m_grafNeorientat.addNode(node);
             MainMenu.m_grafNeorientat.repaint();
             return;
@@ -55,15 +52,13 @@ public class GrafNeorientatMouseAdapter extends MouseAdapter {
     public void mousePressed(MouseEvent e) {
         super.mousePressed(e);
 
-        m_startPosition.setLocation(e.getPoint());
-
         Vector<Node> nodeList = MainMenu.m_grafNeorientat.getNodeList();
 
         for (Node node : nodeList) {
             if (Point.distance(e.getX(), e.getY(), node.getPosition().x, node.getPosition().y) < node.getRadius()) {
 
                 m_nodeDragged = node;
-                m_lastNodePosition.setLocation((Point)node.getPosition().clone());
+                m_lastNodePosition.setLocation(node.getPosition());
                 m_nodeWasFoundAtePoint = true;
                 break;
             }
@@ -84,18 +79,18 @@ public class GrafNeorientatMouseAdapter extends MouseAdapter {
             m_nodeWasMoved = false;
             for (Node node : nodeList) {
                 if (Point.distance(e.getX(), e.getY(), node.getPosition().x, node.getPosition().y) < node.getDiam() && m_nodeDragged != node) {
-                    m_nodeDragged.setPosition(m_lastNodePosition);
+                    m_nodeDragged.setPosition(m_lastNodePosition.getLocation());
                     System.out.println("You can't move one node over another! Point back at position " + m_lastNodePosition);
                     MainMenu.m_grafNeorientat.repaint();
                 }
             }
-            System.out.println("You moved node " + m_nodeDragged.getNumber() + "from " + m_startPosition + "at " + e.getPoint());
+            System.out.println("You moved node " + m_nodeDragged.getNumber() + "from " + e.getPoint() + "at " + e.getPoint());
         }
         if (m_drawArc) {
 
             System.out.println("you draw");
             for (Node node : nodeList) {
-                if (Point.distance(m_endPosition.x, m_endPosition.y, node.getPosition().x, node.getPosition().y) < node.getRadius()) {
+                if (Point.distance(e.getX(), e.getY(), node.getPosition().x, node.getPosition().y) < node.getRadius()) {
                     //create arc
                     MainMenu.m_grafNeorientat.addArc(new Arc(m_nodeDragged, node));
                     System.out.println(" arc");
@@ -118,6 +113,7 @@ public class GrafNeorientatMouseAdapter extends MouseAdapter {
                 System.out.println("ALT btn pressed");
                 m_drawArc = true;
                 //draw arc from node to dragged location to e point
+                GraphicsDrawMethods.DrawSimpleArc(m_lastNodePosition,e.getPoint(),MainMenu.m_grafNeorientat.getGraphics());
 
             } else {
                 m_drawArc = false;
