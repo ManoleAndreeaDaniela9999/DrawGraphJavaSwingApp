@@ -1,7 +1,9 @@
 package com.graf_app.graforientat;
 
+import com.graf_app.Arc;
 import com.graf_app.GrafCanvas;
 import com.graf_app.Node;
+import com.graf_app.GraphicsDrawMethods;
 
 import java.awt.*;
 import java.util.Vector;
@@ -9,6 +11,7 @@ import java.util.Vector;
 public class GrafOrientatCanvas extends GrafCanvas {
 
     private Vector<Node> nodeList;
+    private Vector<Arc> arcList;
     private GrafOrientatMouseAdapter grafOrientatMouseAdapter;
     GrafOrientatCanvas() {
         nodeList = new Vector<Node>();
@@ -34,4 +37,10 @@ public class GrafOrientatCanvas extends GrafCanvas {
     public Vector<Node> getNodeList() {
         return nodeList;
     }
+
+    @Override
+    public void addArc(Arc arc) { arcList.addElement(arc); }
+
+    @Override
+    public Vector<Arc> getArcList() {return arcList; }
 }

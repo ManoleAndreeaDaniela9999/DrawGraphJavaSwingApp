@@ -33,4 +33,9 @@ public class Node {
         return diameter / 2;
     };
     public int getNumber() {return number;}
+
+    @Override
+    public String toString(){
+        return " Node : " + Integer.toString(number) + position.toString();
+    }
 }

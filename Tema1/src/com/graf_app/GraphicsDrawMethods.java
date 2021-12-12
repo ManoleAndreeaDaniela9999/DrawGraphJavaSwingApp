@@ -1,12 +1,10 @@
-package com.graf_app.graforientat;
-
-import com.graf_app.Node;
+package com.graf_app;
 
 import java.awt.*;
 
 public class GraphicsDrawMethods {
 
-     static boolean DrawNode(Node node, Graphics g)
+     public static boolean DrawNode(Node node, Graphics g)
     {
         if(Node.orderNumber > 99)
         {
@@ -27,4 +25,17 @@ public class GraphicsDrawMethods {
         return true;
     }
 
+    public static boolean DrawSimpleArc(Arc arc, Graphics g) {
+
+         Point  startPos =new Point( arc.getStartNode().getPosition());
+         Point  endPos =new Point ( arc.getEndNode().getPosition());
+
+         g.setColor(Color.black);
+         g.drawLine(startPos.x, startPos.y, endPos.x, endPos.y);
+
+         return true;
+    }
+    public static void DrawSimpleArc(Point startPos, Point endPos , Graphics g) {
+
+    }
 }
