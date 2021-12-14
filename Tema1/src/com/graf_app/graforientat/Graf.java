@@ -1,9 +1,6 @@
 package com.graf_app.graforientat;
 
-import com.graf_app.Arc;
-import com.graf_app.GrafWindowListener;
-import com.graf_app.GrafCanvas;
-import com.graf_app.Node;
+import com.graf_app.*;
 import com.graf_app.grafneorientat.GrafNeorientatCanvas;
 
 import javax.swing.*;
@@ -35,6 +32,7 @@ public class Graf extends JFrame {
         }
         this.add(canvas, BorderLayout.CENTER);
         this.addWindowListener(new GrafWindowListener());
+
     }
 
     public static Graf initGraf(boolean isOriented) {
@@ -50,6 +48,7 @@ public class Graf extends JFrame {
 
     public void addNode(Node node) {
         canvas.addNode(node);
+        MatrixUtils.ConstructMatrix(getNodeList(),getArcList(), m_isOriented);
     }
 
     public Vector<Node> getNodeList() {
@@ -58,5 +57,10 @@ public class Graf extends JFrame {
 
     public void addArc(Arc arc) {
         canvas.addArc(arc);
+        MatrixUtils.ConstructMatrix(getNodeList(),getArcList(), m_isOriented);
+    }
+
+    public Vector<Arc> getArcList() {
+        return canvas.getArcList();
     }
 }
