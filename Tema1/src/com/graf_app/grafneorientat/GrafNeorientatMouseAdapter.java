@@ -113,7 +113,7 @@ public class GrafNeorientatMouseAdapter extends MouseAdapter {
                 System.out.println("ALT btn pressed");
                 m_drawArc = true;
                 //draw arc from node to dragged location to e point
-                GraphicsDrawMethods.DrawSimpleArc(m_lastNodePosition,e.getPoint(),MainMenu.m_grafNeorientat.getGraphics());
+                GraphicsDrawMethods.DrawLine(m_lastNodePosition,e.getPoint(),MainMenu.m_grafNeorientat.getGraphics());
 
             } else {
                 m_drawArc = false;
