@@ -2,11 +2,8 @@ package com.graf_app;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
-import java.awt.event.WindowListener;
 
 public class GrafWindowListener extends WindowAdapter {
-
-    public MainMenu m_menu;
 
     public GrafWindowListener() {
 
@@ -18,8 +15,6 @@ public class GrafWindowListener extends WindowAdapter {
             System.out.println("You opened \"Graf Orientat\" window");
         if (MainMenu.m_grafNeorientat != null)
             System.out.println("You opened \"Graf Neorientat\" window");
-
-        //MainMenu.deactivateMainMenu(m_menu);
     }
 
     @Override
@@ -29,7 +24,7 @@ public class GrafWindowListener extends WindowAdapter {
     @Override
     public void windowClosed(WindowEvent e) {
         System.out.println("window closed");
-        MainMenu.resetSubWinRefCount(m_menu);
+        MainMenu.resetSubWinRefCount();
         Node.orderNumber = 0;
     }
 

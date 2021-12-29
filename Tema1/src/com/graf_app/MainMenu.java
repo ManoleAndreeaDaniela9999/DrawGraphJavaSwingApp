@@ -166,8 +166,7 @@ public class MainMenu extends JFrame implements ActionListener {
         subWinRefCount = 1;
     }
 
-    public static void resetSubWinRefCount(MainMenu menu) {
-        //menu.setEnabled(true);
+    public static void resetSubWinRefCount() {
         subWinRefCount = 0;
     }
 
